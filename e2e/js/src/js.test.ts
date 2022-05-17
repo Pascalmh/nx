@@ -1,7 +1,7 @@
 import {
+  checkFilesDoNotExist,
   checkFilesExist,
   expectJestTestsToPass,
-  checkFilesDoNotExist,
   newProject,
   readFile,
   readJson,
@@ -237,9 +237,7 @@ describe('js e2e', () => {
 
   it('should not create a `.babelrc` file when creating libs with js executors (--compiler=tsc)', () => {
     const lib = uniq('lib');
-    runCLI(
-      `generate @nrwl/js:lib ${lib} --compiler=tsc --includeBabelRc=false`
-    );
+    runCLI(`generate @nrwl/js:lib ${lib} --compiler=tsc --skipBabelRc=true`);
 
     checkFilesDoNotExist(`libs/${lib}/.babelrc`);
   });
